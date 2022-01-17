@@ -91,7 +91,7 @@ public class MsgServer {
 		//  Der Befehl muss aus zwei Teilen bestehen, sonst fehlt etwas
 		if(args.length != 2)
 			answer = answer + " (Syntax-Error. Folgende Syntax ist erlaubt: SAVE <Nachricht> oder GET <Schl¸ssel>)";
-		else if(args[0].equalsIgnoreCase("SAVE")) {
+		else if(args[0].equals("SAVE")) {
 			// Die Datei hat die UUID als Namen und .txt als Endung der Textdatei
 			File f = new File(PATH, uuid.toString()+".txt");
 			if(!f.exists())
@@ -99,7 +99,7 @@ public class MsgServer {
 					// Datei erstellen
 					f.createNewFile();
 				} catch (IOException e) {
-					answer = answer + "\n (Die Datei konnte nicht erstellt werden)";
+					answer = answer + " (Die Datei konnte nicht erstellt werden)";
 					e.printStackTrace();
 					return answer;
 				}
@@ -112,11 +112,11 @@ public class MsgServer {
 				// Schreiben beenden und schlieﬂen
 				writer.close();
 			} catch (IOException e) {
-				answer = answer + "\n (Es gab einen Fehler mit dem Output-Stream. Bitte Starten Sie das Programm neu)";
+				answer = answer + " (Es gab einen Fehler mit dem Output-Stream. Bitte Starten Sie das Programm neu)";
 				e.printStackTrace();
 				return answer;
 			}
-		} else if(args[0].equalsIgnoreCase("GET")) {
+		} else if(args[0].equals("GET")) {
 			// Try-with-ressources mit dem BufferedReader
 			try(BufferedReader reader = new BufferedReader(new FileReader(PATH+args[1]+".txt"))) {
 				// Inhalt der Datei lesen
@@ -124,11 +124,11 @@ public class MsgServer {
 				if(r != null) 
 					answer = "OK "+r;
 			} catch (FileNotFoundException e) {
-				answer = answer + "\n (Die Datei "+args[1]+" konnte nicht gefunden werden)";
+				answer = answer + " (Die Datei "+args[1]+" konnte nicht gefunden werden)";
 				e.printStackTrace();
 				return answer;
 			} catch (IOException e) {
-				answer = answer + "\n (Aus der Datei mit dem Key "+args[1]+" konnte nicht gelesen werden)";
+				answer = answer + " (Aus der Datei mit dem Key "+args[1]+" konnte nicht gelesen werden)";
 				e.printStackTrace();
 				return answer;
 			}
