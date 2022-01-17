@@ -4,23 +4,23 @@ Samed Demirel (Matrikelnummer 1307732) und Mathis Neunzig (Matrikelnummer 224058
 
 ## Aufgabe
 
-Entwerfen Sie mit TCP einen Server, der Nachrichten speichert und zur Abfrage über das Netz bereit hält.
+Entwerfen Sie mit TCP einen Server, der Nachrichten speichert und zur Abfrage Ã¼ber das Netz bereit hÃ¤lt.
 Zum Ablegen einer Nachricht auf dem Server sendet ein Client einen String mit dem folgenden Format an
 den Server:
 
 ```
-SAVE beliebig langer String mit abschließendem Zeilenende
+SAVE beliebig langer String mit abschlieÃŸendem Zeilenende
 ```
 	
-Der Server generiert nach dem Empfang einen neuen geeigneten eindeutigen Schlüssel (als String) und
-speichert die Nachricht in einer Datei, wobei der Schlüssel als Dateiname verwendet wird. Danach sendet
-der Server den Schlüssel zurück an den Client:
+Der Server generiert nach dem Empfang einen neuen geeigneten eindeutigen SchlÃ¼ssel (als String) und
+speichert die Nachricht in einer Datei, wobei der SchlÃ¼ssel als Dateiname verwendet wird. Danach sendet
+der Server den SchlÃ¼ssel zurÃ¼ck an den Client:
 
 ```
 KEY schluessel
 ```
 	
-Alle Dateien sollen auf dem Server auf dem Desktop im Verzeichnis ”Messages/” abgespeichert werden, das
+Alle Dateien sollen auf dem Server auf dem Desktop im Verzeichnis â€Messages/â€ abgespeichert werden, das
 Sie vorher schon anlegen sollten.
 
 Zum Abrufen einer Nachricht sendet ein Client einen String:
@@ -30,7 +30,7 @@ GET schluessel
 ```
 
 GET schluessel
-an den Server, der daraufhin u¨berpru¨ft, ob eine entsprechende Datei existiert.
+an den Server, der daraufhin uÂ¨berpruÂ¨ft, ob eine entsprechende Datei existiert.
 Falls ja, sendet er den Inhalt der Datei an den Client:
 
 ```
@@ -45,9 +45,9 @@ FAILED
 
 Implementieren Sie den Server auf Port 7777 sowie einen Client zum Testen.
 
-## Beispiel 1 - Korrekte Ausführung
+## Beispiel 1 - Korrekte AusfÃ¼hrung
 
-Für die Korrekte Ausführung wird einmal SAVE mit einer Nachricht ausgeführt. Der dann übergebene Key wird mit GET angeschickt, um die Nachricht ausgegeben zu bekommen. Die Nachricht wird im Ordner "Messages" auf dem Desktop abgespeichert. Mit "." wird die Verbindung vom Client unterbrochen.
+FÃ¼r die Korrekte AusfÃ¼hrung wird einmal SAVE mit einer Nachricht ausgefÃ¼hrt. Der dann Ã¼bergebene Key wird mit GET angeschickt, um die Nachricht ausgegeben zu bekommen. Die Nachricht wird im Ordner "Messages" auf dem Desktop abgespeichert. Mit "." wird die Verbindung vom Client unterbrochen.
 
 ### Ausgabe Client
 Zeile 1 wird dem User beim Start des Clients angezeigt
@@ -64,6 +64,7 @@ GET 7c184ab7-a8e4-41c6-a213-d3bc14295f31
 OK Ich bin ein Test
 .
 ```
+![image](https://user-images.githubusercontent.com/20612995/149787421-509e3c4e-e2fc-46cc-9baa-b85815fa7499.png)
 
 ### Ausgabe Server
 Zeile 1 wird beim Starten des Servers ausgegeben
@@ -73,11 +74,11 @@ Nachrichtenserver gestartet! (Port 7777)
 ```
 ### Auswertung
 
-Die korrekte Ausführung funktioniert, die Nachricht beim SAVE wird als "7c184ab7-a8e4-41c6-a213-d3bc14295f31.txt" im "Messages" Ordner abgespeichert. Beim Lesen der Datei mit GET wird die Datei gefunden und aus ihr gelesen. Der Client wird beendet, wenn "." eingegeben wird. Die Befehle SAVE und GET werden korrekt vom Server interpretiert und abgearbeitet.
+Die korrekte AusfÃ¼hrung funktioniert, die Nachricht beim SAVE wird als "7c184ab7-a8e4-41c6-a213-d3bc14295f31.txt" im "Messages" Ordner abgespeichert. Beim Lesen der Datei mit GET wird die Datei gefunden und aus ihr gelesen. Der Client wird beendet, wenn "." eingegeben wird. Die Befehle SAVE und GET werden korrekt vom Server interpretiert und abgearbeitet.
 
 ## Beispiel 2 - Syntax-Fehler
 
-Erlaubte Eingaben sind die Befehle "SAVE <Nachricht>", "GET <Nachricht>" und "." zum Beenden. Wenn der Befehl falsch benutzt wird und es wird keine Nachricht mitgegeben, dann soll "FAILED" zurückgegeben werden.
+Erlaubte Eingaben sind die Befehle "SAVE <Nachricht>", "GET <Nachricht>" und "." zum Beenden. Wenn der Befehl falsch benutzt wird und es wird keine Nachricht mitgegeben, dann soll "FAILED" zurÃ¼ckgegeben werden.
 
 ### Ausgabe Client
 Zeile 1 wird dem User beim Start des Clients angezeigt
@@ -89,11 +90,11 @@ Zeile 3, 5 und 7 sind Antworten vom Server
 ``` java
 Verbunden!
 SAVE
-FAILED (Syntax-Error. Folgende Syntax ist erlaubt: SAVE <Nachricht> oder GET <Schlüssel>)
+FAILED (Syntax-Error. Folgende Syntax ist erlaubt: SAVE <Nachricht> oder GET <SchlÃ¼ssel>)
 GET
-FAILED (Syntax-Error. Folgende Syntax ist erlaubt: SAVE <Nachricht> oder GET <Schlüssel>)
+FAILED (Syntax-Error. Folgende Syntax ist erlaubt: SAVE <Nachricht> oder GET <SchlÃ¼ssel>)
 
-FAILED (Syntax-Error. Folgende Syntax ist erlaubt: SAVE <Nachricht> oder GET <Schlüssel>)
+FAILED (Syntax-Error. Folgende Syntax ist erlaubt: SAVE <Nachricht> oder GET <SchlÃ¼ssel>)
 .
 
 ```
@@ -106,11 +107,11 @@ Nachrichtenserver gestartet! (Port 7777)
 ```
 ### Auswertung
 
-Wenn die Nachricht nicht aus zwei Teilen besteht - dem Schlüsselwort und der Nachricht, gibt es einen Fehler und FAILED wird zurückgegeben.
+Wenn die Nachricht nicht aus zwei Teilen besteht - dem SchlÃ¼sselwort und der Nachricht, gibt es einen Fehler und FAILED wird zurÃ¼ckgegeben.
 
 ## Beispiel 3 - Falsche Befehle
 
-Erlaubte Eingaben sind die Befehle "SAVE <Nachricht>", "GET <Nachricht>" und "." zum Beenden. Wenn ein falscher Befehl eingegeben wird, soll "FAILED" zurückgegeben werden.
+Erlaubte Eingaben sind die Befehle "SAVE <Nachricht>", "GET <Nachricht>" und "." zum Beenden. Wenn ein falscher Befehl eingegeben wird, soll "FAILED" zurÃ¼ckgegeben werden.
 
 ### Ausgabe Client
 Zeile 1 wird dem User beim Start des Clients angezeigt
@@ -122,9 +123,9 @@ Zeile 3 und 5 sind Antworten vom Server
 ``` java
 Verbunden!
 SPEICHERN Test
-FAILED (Befehl nicht bekannt. Folgende Befehle sind erlaubt: SAVE <Nachricht> oder GET <Schlüssel>)
+FAILED (Befehl nicht bekannt. Folgende Befehle sind erlaubt: SAVE <Nachricht> oder GET <SchlÃ¼ssel>)
 OK Test
-FAILED (Befehl nicht bekannt. Folgende Befehle sind erlaubt: SAVE <Nachricht> oder GET <Schlüssel>)
+FAILED (Befehl nicht bekannt. Folgende Befehle sind erlaubt: SAVE <Nachricht> oder GET <SchlÃ¼ssel>)
 .
 
 ```
@@ -137,11 +138,11 @@ Nachrichtenserver gestartet! (Port 7777)
 ```
 ### Auswertung
 
-Wenn der Befehl nicht existiert und nicht gültig ist, wird "FAILED" an den Client zurückgegeben.
+Wenn der Befehl nicht existiert und nicht gÃ¼ltig ist, wird "FAILED" an den Client zurÃ¼ckgegeben.
 
 ## Beispiel 4 - Kein Zugriff auf Dateisystem
 
-Zum Schreiben von Dateien braucht der Server Rechte, um auf das Verzeichnis, in dem die Dateien gespeichert werden sollen. Zum Testen wurde der Pfad im Code auf "C:/" geändert, da dieser auf Windows schreibgeschützt ist. Sollte der im Code angegebene Pfad zum Desktop schreibgeschützt sein, wird der selbe Fehler geworfen. Der Client soll "FAILED" erhalten.
+Zum Schreiben von Dateien braucht der Server Rechte, um auf das Verzeichnis, in dem die Dateien gespeichert werden sollen. Zum Testen wurde der Pfad im Code auf "C:/" geÃ¤ndert, da dieser auf Windows schreibgeschÃ¼tzt ist. Sollte der im Code angegebene Pfad zum Desktop schreibgeschÃ¼tzt sein, wird der selbe Fehler geworfen. Der Client soll "FAILED" erhalten.
 
 ### Ausgabe Client
 Zeile 1 wird dem User beim Start des Clients angezeigt
@@ -173,11 +174,11 @@ java.io.IOException: Zugriff verweigert
 ```
 ### Auswertung
 
-Wenn das Dateiverzeichnis schreibgeschützt ist, dann kann die Datei nicht erstellt werden und es wird "FAILED" zurückgegeben.
+Wenn das Dateiverzeichnis schreibgeschÃ¼tzt ist, dann kann die Datei nicht erstellt werden und es wird "FAILED" zurÃ¼ckgegeben.
 
-## Beispiel 5 - Ungültiger Schlüssel
+## Beispiel 5 - UngÃ¼ltiger SchlÃ¼ssel
 
-Wenn ein Schlüssel mit dem GET-Befehl benutzt wird, der nicht existiert, soll eine FileNotFoundException geworfen werden und der Client bekommt "FAILED" zurück.
+Wenn ein SchlÃ¼ssel mit dem GET-Befehl benutzt wird, der nicht existiert, soll eine FileNotFoundException geworfen werden und der Client bekommt "FAILED" zurÃ¼ck.
 
 ### Ausgabe Client
 Zeile 1 wird dem User beim Start des Clients angezeigt
@@ -215,4 +216,4 @@ java.io.FileNotFoundException: C:\Users\Mathis Neunzig\Desktop\Messages\falscher
 ```
 ### Auswertung
 
-Wenn die Datei mit dem gegebenen Key nicht gefunden werden kann und nicht existiert, dann kann wird dem Client "FAILED" übergeben.
+Wenn die Datei mit dem gegebenen Key nicht gefunden werden kann und nicht existiert, dann kann wird dem Client "FAILED" Ã¼bergeben.
